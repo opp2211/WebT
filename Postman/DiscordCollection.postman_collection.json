@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "43078c85-0332-48c4-a3aa-090807e627f3",
+		"name": "DiscordCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "dskrequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9867a25e-a8a0-46d2-a2c8-2033a4de9cf0",
+						"exec": [
+							"pm.test(\"Body\", function() {\r",
+							"    var jsonData = JSON.parse(responseBody); \r",
+							"    pm.expect(jsonData.id).to.eql(\"196612562270420993\");\r",
+							"    pm.expect(jsonData.username).to.eql(\"ExPrime\");\r",
+							"});\r",
+							"pm.test(\"Headers\", function() {\r",
+							"    pm.response.to.be.header(\"Content-Type\",\"application/json\");\r",
+							"});\r",
+							"pm.test(\"Speed\", function() {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "I4XCHtELE1R2OYJji00mRx0Aji53So",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://discord.com/api/users/@me",
+					"protocol": "https",
+					"host": [
+						"discord",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"@me"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
