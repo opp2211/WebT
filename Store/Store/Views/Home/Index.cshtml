@@ -45,51 +45,56 @@
 
 <div class="container">
 
-    <div class="row align-items-center my-4">
+    <div class="row align-items-center my-2">
         <span class="mx-2" style="font-weight: bold;">Sort by: </span>
-        <select class="form-control col-md-2 sortby" id="exampleFormControlSelect1">
-            <option selected disabled>Choose...</option>
-            <option>Name ↓</option>
-            <option>Name ↑</option>
-            <option>Price ↓</option>
-            <option>Price ↑</option>
+        <select class="form-control col-md-2 sortby mx-2" id="exampleFormControlSelect1">
+            <option value="0" selected>Choose...</option>
+            <option value="1">Name ↓</option>
+            <option value="2">Name ↑</option>
+            <option value="3">Price ↓</option>
+            <option value="4">Price ↑</option>
         </select>
     </div>
-    <div class="row align-items-center my-4 ">
+    <div class="row align-items-center my-2 ">
         <span class="mx-2" style="font-weight: bold;">Filter: </span>
         <div>
             Price from
             <input type="text" class="mx-1" style="width: 70px;" value="0">
-            to <input type="text" class="mx-1" style="width: 70px;" value="100000">
+            to <input type="text" class="mx-1" style="width: 70px;" value="500">
         </div>
+    </div>
+    <div class="row align-items-center my-2">
         <div class="btn-group btn-group-toggle ml-2 my-2" data-toggle="buttons">
             <label class="btn btn-secondary active">
-                <input class="filter-btn" type="radio" name="gender" data-gender="0" id="option1"
+                <input class="filter-btn" type="radio" name="gender" value="0" data-gender="0" id="option1"
                        autocomplete="off" checked> All
             </label>
             <label class="btn btn-secondary">
-                <input class="filter-btn" type="radio" name="gender" data-gender="1" id="option2"
+                <input class="filter-btn" type="radio" name="gender" value="1" data-gender="1" id="option2"
                        autocomplete="off"> Men
             </label>
             <label class="btn btn-secondary">
-                <input class="filter-btn" type="radio" name="gender" data-gender="2" id="option3"
+                <input class="filter-btn" type="radio" name="gender" value="2" data-gender="2" id="option3"
                        autocomplete="off"> Women
             </label>
         </div>
         <div class="btn-group btn-group-toggle ml-2 my-2" data-toggle="buttons">
             <label class="btn btn-secondary active">
-                <input class="filter-btn" type="radio" name="type" data-type="0" id="option1" autocomplete="off"
+                <input class="filter-btn" type="radio" name="type" value="0" data-type="0" id="option1" autocomplete="off"
                        checked> All
             </label>
             <label class="btn btn-secondary">
-                <input class="filter-btn" type="radio" name="type" data-type="1" id="option2"
+                <input class="filter-btn" type="radio" name="type" value="1" data-type="1" id="option2"
                        autocomplete="off"> Sport
             </label>
             <label class="btn btn-secondary">
-                <input class="filter-btn" type="radio" name="type" data-type="2" id="option3"
+                <input class="filter-btn" type="radio" name="type" value="2" data-type="2" id="option3"
                        autocomplete="off"> Classic
             </label>
         </div>
+    </div>
+    <div class="row align-items-center my-2 ">
+        <button id="apply_button" type="button" class="btn btn-secondary ml-2">Apply</button>
     </div>
 
 
@@ -121,5 +126,4 @@
             </div>
         }
     </div>
-
 </div>
