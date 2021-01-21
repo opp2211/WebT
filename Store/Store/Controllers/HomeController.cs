@@ -15,5 +15,10 @@ namespace Store.Controllers
             ViewBag.Watches = db.Watches.ToList();
             return View();
         }
+
+        public PartialViewResult GoodsSection()
+        {
+            return PartialView();
+        }
     }
 }
