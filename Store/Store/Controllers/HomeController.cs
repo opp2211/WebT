@@ -12,8 +12,7 @@ namespace Store.Controllers
         WatchContext db = new WatchContext();
         public ActionResult Index()
         {
-            ViewBag.Watches = db.Watches.ToList();
-            return View();
+            return View(db.Watches.ToList());
         }
 
         public PartialViewResult GoodsSection()

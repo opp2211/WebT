@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Store.Models
+@model List<Watch>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -92,7 +94,32 @@
 
 
     <div id="goods" class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
-        @{Html.RenderPartial("GoodsSection");}
+        @foreach (var w in Model)
+        {
+            <div class="col px-0 item" data-brand="@w.Brand" data-gender="@w.Gender" data-type="@w.Type" data-price="@w.Price">
+                <div class="card mx-2 my-2">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-4">
+                            <img src="@w.Img"
+                                 class="card-img" alt="...">
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@w.Brand</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">@w.Model</h6>
+                                <p class="card-text">@w.Descr</p>
+                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                    <strong class="mx-1" style="font-size: 1.2rem;">$@w.Price</strong>
+                                    <a href="#" class="btn btn-outline-dark">
+                                        To cart <i class="fas fa-cart-arrow-down"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 
 </div>
