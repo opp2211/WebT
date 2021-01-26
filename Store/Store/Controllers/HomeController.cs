@@ -13,6 +13,7 @@ namespace Store.Controllers
         WatchContext db = new WatchContext();
         public ActionResult Index()
         {
+            ViewBag.Location = HttpContext.Request.Cookies["location"];
             return View(db.Watches.ToList());
         }
 

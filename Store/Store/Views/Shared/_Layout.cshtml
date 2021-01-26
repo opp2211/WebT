@@ -9,16 +9,64 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light sticky-top">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
         <a class="navbar-brand" href="#">
             <img src="~/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-            Watch Market
+            WatchStore
         </a>
-        <a href="#" class="btn btn-outline-dark my-2 my-sm-0" type="submit">
-            <i class="fas fa-shopping-cart"></i>
-            Cart
-            <span class="badge badge-secondary"></span>
-        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                @{ 
+                    string show = "";
+                    if (ViewBag.Location == null)
+                    {
+                        show += " show";
+                    }
+                }
+                <li class="nav-item dropdown@(show)">
+                    @{
+                        string aexp;
+                        if (ViewBag.Location == null)
+                        {
+                            aexp = "true";
+                        }
+                        else
+                        {
+                            aexp = "false";
+                        }
+                    }
+                    <a class="nav-link" href="#" id="location" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="@aexp">
+                        <i class="fas fa-map-marker-alt"></i>
+                        @{
+                            if (ViewBag.Location == null)
+                            {
+                                <text>Location</text>
+                            }
+                            else
+                            {
+                                <text>@ViewBag.Location</text>
+                            }
+                        }
+                    </a>
+                    <div class="dropdown-menu@(show)" aria-labelledby="location">
+                        <a class="dropdown-item" href="#">Perm</a>
+                        <a class="dropdown-item" href="#">Moscow</a>
+                        <a class="dropdown-item" href="#">Ekaterinburg</a>
+                        <a class="dropdown-item" href="#">Kazan</a>
+                    </div>
+                </li>
+            </ul>
+            <a href="#" class="btn btn-outline-dark my-2 my-sm-0" type="submit">
+                <i class="fas fa-shopping-cart"></i>
+                Cart
+                <span class="badge badge-secondary"></span>
+            </a>
+        </div>
     </nav>
     <div class="container">
         @RenderBody()
