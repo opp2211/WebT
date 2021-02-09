@@ -13,7 +13,6 @@ namespace Store.Controllers
         WatchContext db = new WatchContext();
         public ActionResult Index()
         {
-            ViewBag.Location = HttpContext.Request.Cookies["location"];
             return View(db.Watches.ToList());
         }
 
@@ -68,6 +67,20 @@ namespace Store.Controllers
             }
 
             return PartialView(watches);
+        }
+        public PartialViewResult Location(string loc)
+        {
+            if (loc == null)
+            {
+                string value = HttpContext.Request.Cookies["location"]?.Value;
+                ViewBag.Location = value;
+            }
+            else
+            {
+                HttpContext.Response.Cookies["location"].Value = loc;
+                ViewBag.Location = loc;
+            }
+            return PartialView();
         }
     }
 }

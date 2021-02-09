@@ -1,0 +1,49 @@
+﻿@{
+    string show = "";
+    if (ViewBag.Location == null)
+    {
+        show += " show";
+    }
+}
+<li class="nav-item dropdown@(show)">
+    @{
+        string aexp;
+        if (ViewBag.Location == null)
+        {
+            aexp = "true";
+        }
+        else
+        {
+            aexp = "false";
+        }
+    }
+    <a class="nav-link" href="#" id="location" role="button"
+       data-toggle="dropdown" aria-haspopup="true" aria-expanded="@aexp">
+        <i class="fas fa-map-marker-alt"></i>
+        @{
+            if (ViewBag.Location == null)
+            {
+                <text>Location</text>
+            }
+            else
+            {
+                <text>@ViewBag.Location</text>
+            }
+        }
+    </a>
+    <div class="dropdown-menu@(show)" aria-labelledby="location">
+        <a class="dropdown-item changeloc" href="#" data-loc="Perm">Perm</a>
+        <a class="dropdown-item changeloc" href="#" data-loc="Moscow">Moscow</a>
+        <a class="dropdown-item changeloc" href="#" data-loc="Ekaterinburg">Ekaterinburg</a>
+        <a class="dropdown-item changeloc" href="#" data-loc="Kazan">Kazan</a>
+    </div>
+</li>
+<script>
+    $('.changeloc').click(function (e) {
+        console.log(1);
+        e.preventDefault();
+        var loc = $(this).attr("data-loc");
+        console.log(loc);
+        $('#location').load('Home/Location?loc=' + loc);
+    });
+</script>  
