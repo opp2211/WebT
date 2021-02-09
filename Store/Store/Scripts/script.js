@@ -9,4 +9,11 @@
 
         $('#goods').load('Home/GoodsSection?sort=' + sort + '&price_from=' + price_from + '&price_to=' + price_to + '&gender=' + gender + '&type=' + type);
     });
+    $('.changeloc').click(function (e) {
+        console.log(1);
+        e.preventDefault();
+        var loc = $(this).attr("data-loc");
+        console.log(loc);
+        $('#location').load('Home/Location?loc=' + loc);
+    });
 });
