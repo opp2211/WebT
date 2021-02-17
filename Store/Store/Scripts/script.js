@@ -10,10 +10,14 @@
         $('#goods').load('Home/GoodsSection?sort=' + sort + '&price_from=' + price_from + '&price_to=' + price_to + '&gender=' + gender + '&type=' + type);
     });
     $('.changeloc').click(function (e) {
-        console.log(1);
         e.preventDefault();
         var loc = $(this).attr("data-loc");
         console.log(loc);
         $('#location').load('Home/Location?loc=' + loc);
+    });
+    $('.tocart').click(function (e) {
+        e.preventDefault();
+        let id = $(this).attr("data-cardid");
+        $('#badge').load('Home/AddGood?id=' + id);
     });
 });

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Text.Json;
 
 namespace Store.Controllers
 {
@@ -13,6 +14,14 @@ namespace Store.Controllers
         WatchContext db = new WatchContext();
         public ActionResult Index()
         {
+
+            List<Watch> list = new List<Watch>();
+            if (Session["goods"] != null)
+            {
+                list.AddRange(JsonSerializer.Deserialize<List<Watch>>(Session["goods"].ToString()));
+            }
+            ViewBag.Badge = list.Count;
+
             return View(db.Watches.ToList());
         }
 
@@ -81,6 +90,18 @@ namespace Store.Controllers
                 ViewBag.Location = loc;
             }
             return PartialView();
+        }
+
+        public int AddGood(int id)
+        {
+            List<Watch> newList = new List<Watch>();
+            newList.Add(db.Watches.Find(id));
+            if (Session["goods"] != null)
+            {
+                newList.AddRange(JsonSerializer.Deserialize<List<Watch>>(Session["goods"].ToString()));
+            }
+            Session["goods"] = JsonSerializer.Serialize(newList);
+            return newList.Count;
         }
     }
 }
