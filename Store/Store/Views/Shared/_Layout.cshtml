@@ -7,6 +7,7 @@
     <title>@ViewBag.Title - Watch Market</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
@@ -25,7 +26,12 @@
             <a href="#" class="btn btn-outline-dark my-2 my-sm-0" type="submit">
                 <i class="fas fa-shopping-cart"></i>
                 Cart
-                <span class="badge badge-secondary"></span>
+                <span id="badge" class="badge badge-secondary">@{
+                        if (ViewBag.Badge != null && ViewBag.Badge != 0)
+                        { 
+                            <text>@ViewBag.Badge</text>
+                        }
+                    }</span>
             </a>
         </div>
     </nav>
@@ -34,7 +40,7 @@
     </div>
 
     <script src="https://kit.fontawesome.com/44a1f68427.js" crossorigin="anonymous"></script>
-    @Scripts.Render("~/bundles/jquery")
+    
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/script.js")
     @RenderSection("scripts", required: false)
