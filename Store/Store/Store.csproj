@@ -178,6 +178,8 @@
     <Compile Include="Models\Watch.cs" />
     <Compile Include="Models\WatchContext.cs" />
     <Compile Include="Models\WatchDbInitializer.cs" />
+    <Compile Include="Models\WatchOrder.cs" />
+    <Compile Include="Models\WatchOrdList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -321,7 +323,6 @@
     <Content Include="Views\Home\GoodsSection.cshtml" />
     <Content Include="Views\Home\Location.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Home\AddGood.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
