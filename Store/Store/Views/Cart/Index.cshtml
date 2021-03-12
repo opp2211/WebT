@@ -1,0 +1,81 @@
+﻿@using Store.Models
+@model WatchOrdList
+@{
+    ViewBag.Title = "Index";
+}
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="#">
+        <img src="/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        WatchStore
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto" id="location">
+            @Html.Action("Location", "Home")
+        </ul>
+        <a href="/" class="btn btn-outline-dark my-2 my-sm-0" type="submit">
+            <i class="fas fa-chevron-left"></i>
+            Shop
+        </a>
+    </div>
+</nav>
+<div class="container">
+    <h2 class="mt-4 mb-3">Shopping cart</h2>
+    <div>
+        @foreach (var WO in Model)
+        {
+            <div class="card mb-3" style="max-width: 800px;">
+                <div class="row no-gutters">
+                    <div class="col-3 col-md-2 d-flex justify-content-center">
+                        <img src="@WO.Watch.Img"
+                             class="card-img" alt="..." style="width: 60%;">
+                    </div>
+                    <div class="col-9 col-md-10">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mb-1">
+                                    <h5 class="card-title">@WO.Watch.Brand</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">@WO.Watch.Model</h6>
+                                </div>
+                                <div class="col">
+                                    <div style="font-size: 18px;">
+                                        <a class="controls" data-watchid="@WO.Watch.Id" data-update="-1"><i class="fas fa-minus-square fa-lg text-muted"></i></a>
+                                        <span class="mx-2">@WO.Quantity</span>
+                                        <i class="fas fa-plus-square fa-lg text-muted controls" data-watchid="@WO.Watch.Id" data-update="1"></i>
+                                        <i class="ml-2 fas fa-trash-alt text-muted controls" data-watchid="@WO.Watch.Id" data-update="-@WO.Quantity"></i>
+                                    </div>
+                                    <h6>Cost: <strong class="mx-1">@{int costW = WO.Watch.Price * WO.Quantity;}@costW $</strong></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+    @{ 
+        int cost = 0;
+        foreach (var WO in Model)
+        {
+            cost += WO.Watch.Price * WO.Quantity;
+        }
+    }
+    <div>
+        <h6>Total cost: <strong class="mx-1">@cost $</strong></h6>
+        <button type="button" class="btn btn-outline-dark">Checkout</button>
+    </div>
+</div>
+<script>
+    $('.controls').click(function (e) {
+        e.preventDefault();
+        let id = $(this).attr("data-watchid");
+        let quantt = $(this).attr("data-update");
+        $('body').load('Cart/UpdateQuantt?id=' + id + '&quantt=' + quantt);
+    });
+</script>
