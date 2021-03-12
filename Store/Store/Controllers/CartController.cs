@@ -39,25 +39,33 @@ namespace Store.Controllers
             Session["goods"] = JsonSerializer.Serialize(listWO);
             return View("Index", listWO);
         }
-        public void Checkout()
+        public RedirectResult Checkout()
         {
-            db.Orders.Add(new Order
+            if (Session["goods"] != null)
             {
-                Location = HttpContext.Request.Cookies["location"]?.Value,
-                DateTime = DateTime.Now
-            });
-            int orderId = db.Orders.Local.Last().OrderId;
-            WatchOrdList listWO = JsonSerializer.Deserialize<WatchOrdList>(Session["goods"].ToString());
-            foreach (var WO in listWO)
-            {
-                db.Purchase.Add(new Purchase
+                db.Orders.Add(new Order
                 {
-                    OrderID = orderId,
-                    WatchId = WO.Watch.Id,
-                    Quantity = WO.Quantity
+                    Location = HttpContext.Request.Cookies["location"]?.Value,
+                    DateTime = DateTime.Now
                 });
+                db.SaveChanges();
+                int orderId = db.Orders.ToList().Last().OrderId;
+                WatchOrdList listWO = JsonSerializer.Deserialize<WatchOrdList>(Session["goods"].ToString());
+                foreach (var WO in listWO)
+                {
+                    db.Purchase.Add(new Purchase
+                    {
+                        OrderID = orderId,
+                        WatchId = WO.Watch.Id,
+                        Quantity = WO.Quantity
+                    });
+                }
+                db.SaveChanges();
+
+                Session.Remove("goods");
             }
-            db.SaveChanges();
+            
+            return Redirect("/Cart");
         }
     }
 }
