@@ -28,5 +28,14 @@ namespace Store.Models
             }
             return null;
         }
+        public WatchOrder GetWObyID(int Id)
+        {
+            foreach (var item in this)
+            {
+                if (Id == item.Watch.Id)
+                    return item;
+            }
+            return null;
+        }
     }
 }
