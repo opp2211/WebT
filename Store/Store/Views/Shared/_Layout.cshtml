@@ -10,37 +10,9 @@
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
-        <a class="navbar-brand" href="#">
-            <img src="~/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-            WatchStore
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto" id="location">
-               @Html.Action("Location")
-            </ul>
-            <a href="#" class="btn btn-outline-dark my-2 my-sm-0" type="submit">
-                <i class="fas fa-shopping-cart"></i>
-                Cart
-                <span id="badge" class="badge badge-secondary">@{
-                        if (ViewBag.Badge != null && ViewBag.Badge != 0)
-                        { 
-                            <text>@ViewBag.Badge</text>
-                        }
-                    }</span>
-            </a>
-        </div>
-    </nav>
-    <div class="container">
-        @RenderBody()
-    </div>
+    @RenderBody()
 
     <script src="https://kit.fontawesome.com/44a1f68427.js" crossorigin="anonymous"></script>
-    
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/script.js")
     @RenderSection("scripts", required: false)

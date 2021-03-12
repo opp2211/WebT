@@ -11,5 +11,7 @@ namespace Store.Models
     {
         public WatchContext() : base("conn") { }
         public DbSet<Watch> Watches { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Purchase> Purchase { get; set; }
     }
 }

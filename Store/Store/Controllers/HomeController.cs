@@ -14,13 +14,12 @@ namespace Store.Controllers
         WatchContext db = new WatchContext();
         public ActionResult Index()
         {
-
-            List<Watch> list = new List<Watch>();
+            WatchOrdList listWO = new WatchOrdList();
             if (Session["goods"] != null)
             {
-                list.AddRange(JsonSerializer.Deserialize<List<Watch>>(Session["goods"].ToString()));
+                listWO = JsonSerializer.Deserialize<WatchOrdList>(Session["goods"].ToString());
             }
-            ViewBag.Badge = list.Count;
+            ViewBag.Badge = listWO.Counts;
 
             return View(db.Watches.ToList());
         }
@@ -94,14 +93,22 @@ namespace Store.Controllers
 
         public int AddGood(int id)
         {
-            List<Watch> newList = new List<Watch>();
-            newList.Add(db.Watches.Find(id));
+            WatchOrdList listWO = new WatchOrdList();
             if (Session["goods"] != null)
             {
-                newList.AddRange(JsonSerializer.Deserialize<List<Watch>>(Session["goods"].ToString()));
+                listWO = JsonSerializer.Deserialize<WatchOrdList>(Session["goods"].ToString());
             }
-            Session["goods"] = JsonSerializer.Serialize(newList);
-            return newList.Count;
+
+            Watch watch = db.Watches.Find(id);
+            if (listWO.GetWO(watch) != null)
+            {
+                listWO.GetWO(watch).Quantity++;
+            }
+            else
+                listWO.Add(new WatchOrder(watch));
+
+            Session["goods"] = JsonSerializer.Serialize(listWO);
+            return listWO.Counts;
         }
     }
 }
