@@ -39,5 +39,25 @@ namespace Store.Controllers
             Session["goods"] = JsonSerializer.Serialize(listWO);
             return View("Index", listWO);
         }
+        public void Checkout()
+        {
+            db.Orders.Add(new Order
+            {
+                Location = HttpContext.Request.Cookies["location"]?.Value,
+                DateTime = DateTime.Now
+            });
+            int orderId = db.Orders.Local.Last().OrderId;
+            WatchOrdList listWO = JsonSerializer.Deserialize<WatchOrdList>(Session["goods"].ToString());
+            foreach (var WO in listWO)
+            {
+                db.Purchase.Add(new Purchase
+                {
+                    OrderID = orderId,
+                    WatchId = WO.Watch.Id,
+                    Quantity = WO.Quantity
+                });
+            }
+            db.SaveChanges();
+        }
     }
 }
