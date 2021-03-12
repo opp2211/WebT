@@ -5,7 +5,7 @@
 }
 
 <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/">
         <img src="/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
         WatchStore
     </a>
@@ -45,9 +45,9 @@
                                     <div style="font-size: 18px;">
                                         <a class="controls" data-watchid="@WO.Watch.Id" data-update="-1"><i class="fas fa-minus-square fa-lg text-muted"></i></a>
                                         <span class="mx-2">@WO.Quantity</span>
-                                        <i class="fas fa-plus-square fa-lg text-muted controls" data-watchid="@WO.Watch.Id" data-update="1"></i>
-                                        <i class="ml-2 fas fa-trash-alt text-muted controls" data-watchid="@WO.Watch.Id" data-update="-@WO.Quantity"></i>
-                                    </div>
+                                        <a class="controls" data-watchid="@WO.Watch.Id" data-update="1"><i class="fas fa-plus-square fa-lg text-muted"></i></a>
+                                        <a class="controls" data-watchid="@WO.Watch.Id" data-update="-@WO.Quantity"><i class="ml-2 fas fa-trash-alt text-muted"></i></a>
+</div>
                                     <h6>Cost: <strong class="mx-1">@{int costW = WO.Watch.Price * WO.Quantity;}@costW $</strong></h6>
                                 </div>
                             </div>
