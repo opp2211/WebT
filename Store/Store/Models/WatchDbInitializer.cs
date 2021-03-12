@@ -18,7 +18,7 @@ namespace Store.Models
                 Price = 220,
                 Gender = 1,
                 Type = 2,
-                Img = "images/watches/1.jpg"
+                Img = "~/images/watches/1.jpg"
             });
             db.Watches.Add(new Watch
             {
@@ -28,7 +28,7 @@ namespace Store.Models
                 Price = 130,
                 Gender = 1,
                 Type = 2,
-                Img = "images/watches/2.jpg"
+                Img = "~/images/watches/2.jpg"
             });
             db.Watches.Add(new Watch
             {
@@ -38,7 +38,7 @@ namespace Store.Models
                 Price = 99,
                 Gender = 1,
                 Type = 2,
-                Img = "images/watches/3.jpg"
+                Img = "~/images/watches/3.jpg"
             });
             db.Watches.Add(new Watch
             {
@@ -48,7 +48,7 @@ namespace Store.Models
                 Price = 320,
                 Gender = 2,
                 Type = 2,
-                Img = "images/watches/4.jpg"
+                Img = "~/images/watches/4.jpg"
             });
             db.Watches.Add(new Watch
             {
@@ -58,7 +58,7 @@ namespace Store.Models
                 Price = 270,
                 Gender = 2,
                 Type = 1,
-                Img = "images/watches/5.jpg"
+                Img = "~/images/watches/5.jpg"
             });
             db.Watches.Add(new Watch
             {
@@ -68,7 +68,7 @@ namespace Store.Models
                 Price = 190,
                 Gender = 2,
                 Type = 1,
-                Img = "images/watches/6.jpg"
+                Img = "~/images/watches/6.jpg"
             });
             db.Watches.Add(new Watch
             {
@@ -78,7 +78,7 @@ namespace Store.Models
                 Price = 400,
                 Gender = 1,
                 Type = 1,
-                Img = "images/watches/7.jpg"
+                Img = "~/images/watches/7.jpg"
             });
 
             base.Seed(db);
